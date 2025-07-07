@@ -43,10 +43,7 @@ export async function getAITrustCentreOverview(
 
     if (result) {
       return res.status(200).json(
-        STATUS_CODE[200]({
-          message: "AI Trust Centre overview retrieved successfully",
-          data: result,
-        })
+        STATUS_CODE[200](result)
       );
     }
 
