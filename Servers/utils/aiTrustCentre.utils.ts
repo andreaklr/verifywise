@@ -188,3 +188,52 @@ export const createAITrustCentreOverviewQuery = async (
     terms_and_contact,
   };
 };
+
+export const getAITrustCentreOverviewQuery = async (organization_id: number = 1) => {
+  // Get intro data
+  const introResult = await sequelize.query(
+    `SELECT * FROM ai_trust_centre_intro WHERE organization_id = :organization_id`,
+    {
+      replacements: { organization_id },
+      mapToModel: true,
+      model: AITrustCenterIntroModel,
+    }
+  );
+
+  // Get compliance badges data
+  const complianceBadgesResult = await sequelize.query(
+    `SELECT * FROM ai_trust_centre_compliance_badges WHERE organization_id = :organization_id`,
+    {
+      replacements: { organization_id },
+      mapToModel: true,
+      model: AITrustCenterComplianceBadgesModel,
+    }
+  );
+
+  // Get company info data
+  const companyInfoResult = await sequelize.query(
+    `SELECT * FROM ai_trust_centre_company_info WHERE organization_id = :organization_id`,
+    {
+      replacements: { organization_id },
+      mapToModel: true,
+      model: AITrustCentreCompanyInfoModel,
+    }
+  );
+
+  // Get terms and contact data
+  const termsAndContactResult = await sequelize.query(
+    `SELECT * FROM ai_trust_center_terms_and_contact WHERE organization_id = :organization_id`,
+    {
+      replacements: { organization_id },
+      mapToModel: true,
+      model: AITrustCenterTermsAndContactModel,
+    }
+  );
+
+  return {
+    intro: introResult[0] || null,
+    compliance_badges: complianceBadgesResult[0] || null,
+    company_info: companyInfoResult[0] || null,
+    terms_and_contact: termsAndContactResult[0] || null,
+  };
+};
