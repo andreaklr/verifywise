@@ -40,6 +40,10 @@ import { SubClauseISOModel } from "../domain.layer/frameworks/ISO-42001/subClaus
 import { SubClauseStructISOModel } from "../domain.layer/frameworks/ISO-42001/subClauseStructISO.model";
 import { OrganizationModel } from "../domain.layer/models/organization/organization.model";
 import { TrainingRegistarModel } from "../domain.layer/models/trainingRegistar/trainingRegistar.model";
+import { AITrustCentreCompanyInfoModel } from "../domain.layer/models/aiTrustCentreCompanyInfo/aiTrustCentreCompanyInfo.model";
+import { AITrustCenterComplianceBadgesModel } from "../domain.layer/models/aiTrustCentreBadges/aiTrustCentreBadges.model";
+import { AITrustCenterIntroModel } from "../domain.layer/models/aiTrustCentreIntro/aiTrustCentreIntro.model";
+import { AITrustCenterTermsAndContactModel } from "../domain.layer/models/aiTrustCenterTermsAndContact/aiTrustCenterTermsAndContact.model";
 
 dotenv.config();
 
@@ -89,6 +93,10 @@ const sequelize = new Sequelize(conf.database!, conf.username!, conf.password, {
     SubClauseStructISOModel,
     TrainingRegistarModel,
     OrganizationModel,
+    AITrustCentreCompanyInfoModel,
+    AITrustCenterComplianceBadgesModel,
+    AITrustCenterIntroModel,
+    AITrustCenterTermsAndContactModel
   ],
 }) as Sequelize;
 
