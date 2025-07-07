@@ -37,6 +37,15 @@ export const createAITrustCentreOverviewQuery = async (
       our_mission_visible = EXCLUDED.our_mission_visible,
       our_mission_text = EXCLUDED.our_mission_text,
       updated_at = NOW()
+    WHERE (
+      ai_trust_centre_intro.intro_visible IS DISTINCT FROM EXCLUDED.intro_visible OR
+      ai_trust_centre_intro.purpose_visible IS DISTINCT FROM EXCLUDED.purpose_visible OR
+      ai_trust_centre_intro.purpose_text IS DISTINCT FROM EXCLUDED.purpose_text OR
+      ai_trust_centre_intro.our_statement_visible IS DISTINCT FROM EXCLUDED.our_statement_visible OR
+      ai_trust_centre_intro.our_statement_text IS DISTINCT FROM EXCLUDED.our_statement_text OR
+      ai_trust_centre_intro.our_mission_visible IS DISTINCT FROM EXCLUDED.our_mission_visible OR
+      ai_trust_centre_intro.our_mission_text IS DISTINCT FROM EXCLUDED.our_mission_text
+    )
     RETURNING *`,
     {
       replacements: {
@@ -68,6 +77,17 @@ export const createAITrustCentreOverviewQuery = async (
       HIPAA = EXCLUDED.HIPAA,
       EU_AI_Act = EXCLUDED.EU_AI_Act,
       updated_at = NOW()
+    WHERE (
+      ai_trust_centre_compliance_badges.badges_visible IS DISTINCT FROM EXCLUDED.badges_visible OR
+      ai_trust_centre_compliance_badges.SOC2_Type_I IS DISTINCT FROM EXCLUDED.SOC2_Type_I OR
+      ai_trust_centre_compliance_badges.SOC2_Type_II IS DISTINCT FROM EXCLUDED.SOC2_Type_II OR
+      ai_trust_centre_compliance_badges.ISO_27001 IS DISTINCT FROM EXCLUDED.ISO_27001 OR
+      ai_trust_centre_compliance_badges.ISO_42001 IS DISTINCT FROM EXCLUDED.ISO_42001 OR
+      ai_trust_centre_compliance_badges.CCPA IS DISTINCT FROM EXCLUDED.CCPA OR
+      ai_trust_centre_compliance_badges.GDPR IS DISTINCT FROM EXCLUDED.GDPR OR
+      ai_trust_centre_compliance_badges.HIPAA IS DISTINCT FROM EXCLUDED.HIPAA OR
+      ai_trust_centre_compliance_badges.EU_AI_Act IS DISTINCT FROM EXCLUDED.EU_AI_Act
+    )
     RETURNING *`,
     {
       replacements: {
@@ -99,6 +119,15 @@ export const createAITrustCentreOverviewQuery = async (
       compliance_doc_visible = EXCLUDED.compliance_doc_visible,
       compliance_doc_text = EXCLUDED.compliance_doc_text,
       updated_at = NOW()
+    WHERE (
+      ai_trust_centre_company_info.company_info_visible IS DISTINCT FROM EXCLUDED.company_info_visible OR
+      ai_trust_centre_company_info.background_visible IS DISTINCT FROM EXCLUDED.background_visible OR
+      ai_trust_centre_company_info.background_text IS DISTINCT FROM EXCLUDED.background_text OR
+      ai_trust_centre_company_info.core_benefit_visible IS DISTINCT FROM EXCLUDED.core_benefit_visible OR
+      ai_trust_centre_company_info.core_benefit_text IS DISTINCT FROM EXCLUDED.core_benefit_text OR
+      ai_trust_centre_company_info.compliance_doc_visible IS DISTINCT FROM EXCLUDED.compliance_doc_visible OR
+      ai_trust_centre_company_info.compliance_doc_text IS DISTINCT FROM EXCLUDED.compliance_doc_text
+    )
     RETURNING *`,
     {
       replacements: {
@@ -130,6 +159,15 @@ export const createAITrustCentreOverviewQuery = async (
         has_company_email = EXCLUDED.has_company_email,
         company_email = EXCLUDED.company_email,
         updated_at = NOW()
+      WHERE (
+        ai_trust_center_terms_and_contact.is_visible IS DISTINCT FROM EXCLUDED.is_visible OR
+        ai_trust_center_terms_and_contact.has_terms_of_service IS DISTINCT FROM EXCLUDED.has_terms_of_service OR
+        ai_trust_center_terms_and_contact.terms_of_service IS DISTINCT FROM EXCLUDED.terms_of_service OR
+        ai_trust_center_terms_and_contact.has_privacy_policy IS DISTINCT FROM EXCLUDED.has_privacy_policy OR
+        ai_trust_center_terms_and_contact.privacy_policy IS DISTINCT FROM EXCLUDED.privacy_policy OR
+        ai_trust_center_terms_and_contact.has_company_email IS DISTINCT FROM EXCLUDED.has_company_email OR
+        ai_trust_center_terms_and_contact.company_email IS DISTINCT FROM EXCLUDED.company_email
+      )
       RETURNING *`,
       {
         replacements: {
