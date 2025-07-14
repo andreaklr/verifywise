@@ -19,17 +19,28 @@ import Playground from "../../presentation/pages";
 import VWHome from "../../presentation/pages/Home/1.0Home";
 import VWProjectView from "../../presentation/pages/ProjectView/V1.0ProjectView";
 import PageNotFound from "../../presentation/pages/PageNotFound";
+import ProtectedRoute from "../../presentation/components/ProtectedRoute";
 import FairnessDashboard from "../../presentation/pages/FairnessDashboard/FairnessDashboard";
 import FairnessResultsPage from "../../presentation/pages/FairnessDashboard/FairnessResultsPage";
 import AITrustCenter from "../../presentation/pages/AITrustCenter";
+
 import Training from "../../presentation/pages/TrainingRegistar";
 
 export const createRoutes = (
   triggerSidebar: boolean,
   triggerSidebarReload: () => void
 ) => [
-  <Route key="dashboard" path="/" element={<Dashboard reloadTrigger={triggerSidebar} />}>
-    <Route path="/test" element={<Home onProjectUpdate={triggerSidebarReload} />} />
+  <Route
+    key="dashboard"
+    path="/"
+    element={
+      <ProtectedRoute Component={Dashboard} reloadTrigger={triggerSidebar} />
+    }
+  >
+    <Route
+      path="/test"
+      element={<Home onProjectUpdate={triggerSidebarReload} />}
+    />
     <Route path="/vendors" element={<Vendors />} />
     <Route path="/setting" element={<Setting />} />
     <Route path="/organization" element={<Organization />} />
@@ -40,18 +51,49 @@ export const createRoutes = (
     <Route path="/project-view" element={<VWProjectView />} />
     <Route path="/fairness-dashboard" element={<FairnessDashboard />} />
     <Route path="/fairness-results/:id" element={<FairnessResultsPage />} />
-    <Route path="/training" element={<Training />} />
+    <Route path="/training" element={<Training />}/>
     <Route path="/ai-trust-center" element={<AITrustCenter />} />
   </Route>,
-
-  <Route key="admin-reg" path="/admin-reg" element={<RegisterAdmin />} />,
-  <Route key="user-reg" path="/user-reg" element={<RegisterUser />} />,
-  <Route key="register" path="/register" element={<RegisterMultiTenant />} />,
-  <Route key="login" path="/login" element={<Login />} />,
-  <Route key="forgot-password" path="/forgot-password" element={<ForgotPassword />} />,
-  <Route key="reset-password" path="/reset-password" element={<ResetPassword />} />,
-  <Route key="set-new-password" path="/set-new-password" element={<SetNewPassword />} />,
-  <Route key="reset-password-continue" path="/reset-password-continue" element={<ResetPasswordContinue />} />,
+  <Route
+    key="admin-reg"
+    path="/admin-reg"
+    element={<ProtectedRoute Component={RegisterAdmin} />}
+  />,
+  <Route
+    key="user-reg"
+    path="/user-reg"
+    element={<ProtectedRoute Component={RegisterUser} />}
+  />,
+  <Route
+    key="register"
+    path="/register"
+    element={<ProtectedRoute Component={RegisterMultiTenant} />}
+  />,
+  <Route
+    key="login"
+    path="/login"
+    element={<ProtectedRoute Component={Login} />}
+  />,
+  <Route
+    key="forgot-password"
+    path="/forgot-password"
+    element={<ProtectedRoute Component={ForgotPassword} />}
+  />,
+  <Route
+    key="reset-password"
+    path="/reset-password"
+    element={<ProtectedRoute Component={ResetPassword} />}
+  />,
+  <Route
+    key="set-new-password"
+    path="/set-new-password"
+    element={<ProtectedRoute Component={SetNewPassword} />}
+  />,
+  <Route
+    key="reset-password-continue"
+    path="/reset-password-continue"
+    element={<ProtectedRoute Component={ResetPasswordContinue} />}
+  />,
   <Route key="playground" path="/playground" element={<Playground />} />,
   <Route key="not-found" path="*" element={<PageNotFound />} />,
 ];
